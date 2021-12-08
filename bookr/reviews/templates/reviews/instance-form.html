@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block brand %}
+    <img src="{% static 'reviews/logo.png' %}">
+{% endblock %}
+{% block title %}
+    {% if instance is not None  %}
+        Editing {{ model_type }} {{ instance }}
+    {% else %}
+        New {{ model_type }}
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <h2>
+     {% if instance is not None  %}
+         Editing {{ model_type }} <em>{{ instance }}</em>
+    {% else %}
+        New {{ model_type }}
+    {% endif %}
+    {% if related_instance and related_model_type %}
+        <p>For {{ related_model_type }} <em>{{ related_instance }}</em></p>
+    {% endif %}
+    </h2>
+    <form method="post" {% if is_file_upload %} enctype="multipart/form-data" {% endif %}>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input class="btn btn-primary" type="submit" value="{% if instance %}Save{% else %}Create{% endif %}"></p>
+    </form>
+{% endblock %}

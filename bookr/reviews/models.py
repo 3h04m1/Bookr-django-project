@@ -1,5 +1,7 @@
+
 from django.contrib import auth
 from django.db import models
+
 
 
 class Publisher(models.Model):
@@ -25,6 +27,8 @@ class Book(models.Model):
                                   on_delete=models.CASCADE, null=False)
     contributors = models.ManyToManyField('Contributor',
                                           through="BookContributor")
+    cover = models.ImageField(upload_to='book_covers/', null=True, blank=True)
+    sample = models.FileField(upload_to='book_samples/', null=True, blank=True)
 
     def __str__(self):
         return self.title

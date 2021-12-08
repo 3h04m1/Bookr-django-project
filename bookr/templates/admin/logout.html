@@ -1,0 +1,6 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<p>You have been logged out from the Admin panel. </p>
+<p><button class="btn btn-primary"><a href="{% url 'admin:index' %}">Login Again</a></button> or <button class="btn btn-secondary"><a href="{{ site_url }}">Go to Home Page</a></button></p>
+{% endblock %}

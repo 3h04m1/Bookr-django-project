@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+{% load explode_filter %}
+<ul>
+{% for name in names|explode:"," %}
+    <li>{{ name }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>

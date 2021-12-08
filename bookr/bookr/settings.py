@@ -24,18 +24,25 @@ SECRET_KEY = 'django-insecure--)2beo8kr9maxs#gj#gx=2m446+)4$i0!1lk+zd*@-q@qwxdst
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+
 
 # Application definition
 
 INSTALLED_APPS = [
-    'reviews.apps_admin.ReviewsAdminConfig',
+    'bookr_admin.app_admin.BookrAdminConfig',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reviews',
+    'bookr_admin',
+    'filter_demo',
+    'book_management_app',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -116,7 +123,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
                     os.path.join(BASE_DIR, 'reviews/static')]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
