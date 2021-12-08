@@ -19,7 +19,7 @@ urlpatterns = [
     path("publishers/new", views.publisher_edit, name="publisher_create"),
     path("publishers/<pk>", views.publisher_edit, name="publisher_edit"),
     path("", views.index),
-    path("api/all_books/", api_views.all_books),
+    path("api/all_books/", api_views.AllBooks.as_view(), name="all_books"),
 ]
 
 if settings.DEBUG:
