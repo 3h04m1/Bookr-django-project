@@ -25,6 +25,7 @@ urlpatterns = [
     path("publishers/<pk>", views.publisher_edit, name="publisher_edit"),
     path("", views.index),
     path('api/', include((router.urls, 'api'))),
+    path('api/login/', api_views.Login.as_view(), name='login')
 
 ]
 
