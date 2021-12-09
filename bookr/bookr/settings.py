@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'bookr_admin',
     'filter_demo',
     'book_management_app',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
