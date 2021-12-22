@@ -60,4 +60,11 @@
         {% book_list user.username %}
     </div>
     </div>
+    {% autoescape off %}
+    {{ books_read_plot }}
+    {% endautoescape %}
+    <div class="text-center">
+    <label for="reading-history">Reading history</label>
+    <a href="/accounts/profile/reading_history"><button id="reading-history" class="btn, btn-primary">Download</button></a>
+    </div>
 {% endblock %}

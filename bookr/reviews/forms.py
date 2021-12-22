@@ -1,6 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import Publisher, Review, Book
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 
 class SearchForm(forms.Form):
@@ -10,7 +12,11 @@ class SearchForm(forms.Form):
                                       ("title", "Title"),
                                       ("contributor", "Contributor")
                                   ))
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'get'
+        self.helper.add_input(Submit('', "Search"))
 
 class PublisherForm(forms.ModelForm):
     class Meta:
@@ -51,10 +57,21 @@ class ReviewForm(forms.ModelForm):
         model = Review
         exclude = ["date_edited", "book"]
     rating = forms.IntegerField(min_value=0, max_value=5)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('', "Submit"))
+
 
 
 class BookMediaForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ["cover", "sample"]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('', "Submit"))
 

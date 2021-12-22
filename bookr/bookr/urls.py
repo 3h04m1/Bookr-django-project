@@ -17,19 +17,26 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import include, path
 from django.conf import settings
-from .views import profile
+from .views import profile, reading_history
+# from debug_toolbar import urls as debug_urls
+import debug_toolbar
 
 
 urlpatterns = [
     path('accounts/', include(('django.contrib.auth.urls', 'auth'),
                               namespace='accounts')),
     path('accounts/profile/', profile, name='profile'),
+    path('accounts/profile/reading_history', reading_history, name='reading_history'),
     path('admin/', admin.site.urls),
     path('', include('reviews.urls')),
     path('filter_demo/', include('filter_demo.urls')),
     path('book_management/', include('book_management_app.urls')),
+    path('test/', include('bookr_test.urls')),
+    # path('__debug__/', include(debug_toolbar.urls)),
 
 ]
 
 if settings.DEBUG:
+    urlpatterns += path('__debug__/', include(debug_toolbar.urls)),
+
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

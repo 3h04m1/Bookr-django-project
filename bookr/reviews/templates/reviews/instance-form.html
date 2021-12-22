@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block brand %}
     <img src="{% static 'reviews/logo.png' %}">
 {% endblock %}
@@ -23,7 +24,7 @@
     </h2>
     <form method="post" {% if is_file_upload %} enctype="multipart/form-data" {% endif %}>
         {% csrf_token %}
-        {{ form.as_p }}
-        <p><input class="btn btn-primary" type="submit" value="{% if instance %}Save{% else %}Create{% endif %}"></p>
+        {% crispy form %}
+{#        <p><input class="btn btn-primary" type="submit" value="{% if instance %}Save{% else %}Create{% endif %}"></p>#}
     </form>
 {% endblock %}
