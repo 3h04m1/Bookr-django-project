@@ -14,7 +14,7 @@ from .forms import SearchForm, OrderForm, PublisherForm, ReviewForm, BookMediaFo
 
 
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'reviews/index.html')
 
 
 def book_list(request):
@@ -207,6 +207,5 @@ def book_media(request, pk):
     return render(request, "reviews/instance-form.html",
                   {"instance": book, "form": form, "model_type": "Book", "is_file_upload": True})
 
-def react_example(request):
-    return render(request, 'react-example.html')
+
 

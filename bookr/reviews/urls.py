@@ -23,10 +23,10 @@ urlpatterns = [
     path("example-form", views.example_form, name="example_form"),
     path("publishers/new", views.publisher_edit, name="publisher_create"),
     path("publishers/<pk>", views.publisher_edit, name="publisher_edit"),
-    path("", views.index),
+    path("", views.index, name="index"),
     path('api/', include((router.urls, 'api'))),
     path('api/login/', api_views.Login.as_view(), name='login'),
-    path('react-example/', views.react_example, name="react-example")
+
 
 ]
 
