@@ -20,7 +20,7 @@ class Dev(Configuration):
     BASE_DIR = Path(__file__).resolve().parent.parent
     SECRET_KEY = 'django-insecure--)2beo8kr9maxs#gj#gx=2m446+)4$i0!1lk+zd*@-q@qwxdst'
     DEBUG = values.BooleanValue(True)
-    ALLOWED_HOSTS = values.ListValue([])
+    ALLOWED_HOSTS = ['192.168.0.7', '127.0.0.1']
     # Application definition
 
     INSTALLED_APPS = [
