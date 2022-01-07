@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os.path
+from os import environ
 from configurations import Configuration, values
 from pathlib import Path
 
@@ -18,13 +19,14 @@ from pathlib import Path
 
 class Dev(Configuration):
     BASE_DIR = Path(__file__).resolve().parent.parent
+    PROJ_ROOT = '/home/bookr/Bookr-django-project/'
     SECRET_KEY = 'django-insecure--)2beo8kr9maxs#gj#gx=2m446+)4$i0!1lk+zd*@-q@qwxdst'
     DEBUG = values.BooleanValue(True)
-    ALLOWED_HOSTS = ['192.168.0.7', '127.0.0.1']
+    ALLOWED_HOSTS = ['192.168.0.7', '127.0.0.1', '192.168.0.5']
     # Application definition
 
     INSTALLED_APPS = [
-        'debug_toolbar',
+ #       'debug_toolbar',
         'bookr_admin.app_admin.BookrAdminConfig',
         # 'django.contrib.admin',
         'django.contrib.auth',
@@ -44,7 +46,7 @@ class Dev(Configuration):
     ]
 
     MIDDLEWARE = [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
+  #      'debug_toolbar.middleware.DebugToolbarMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -114,21 +116,36 @@ class Dev(Configuration):
     # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
     STATIC_URL = '/static/'
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
-                        os.path.join(BASE_DIR, 'reviews/static')]
+    STATIC_ROOT = '/home/bookr/Bookr-django-project/static/'
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
     MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    MEDIA_ROOT = '/home/bookr/Bookr-django-project/media/'
 
     # Default primary key field type
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
     SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
-    INTERNAL_IPS = ['127.0.0.1', '192.168.0.7', '0.0.0.0']
+   # INTERNAL_IPS = ['127.0.0.1', '192.168.0.7', '0.0.0.0']
     CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 class Prod(Dev):
-    DEBUG = False
-    SECRET_KEY = values.SecretValue()
+    DEBUG = True
+    SECRET_KEY = environ['DJANGO_SECRET_KEY']
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                
+                'NAME': 'db.sqlite3',
+                
+                #'USERNAME': 'bookr',
+                
+                #'PASSWORD': 'bargain23',
+                
+                #'HOST':  'localhost',
+                
+                #'PORT': '',
+                }
+            }
