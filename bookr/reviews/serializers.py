@@ -3,7 +3,7 @@ from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.exceptions import NotAuthenticated, PermissionDenied
 
-from .models import Book, Publisher, Review
+from .models import Book, Publisher, Review, Contributor
 from .utils import average_rating
 
 
@@ -19,13 +19,27 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['username', 'email']
 
 
+class ReviewBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['pk','title', 'publisher', 'contributors', 'cover']
+
+
+class ContributorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contributor
+        fields = ['initialled_name']
+
+
+
 class ReviewSerializer(serializers.ModelSerializer):
     creator = UserSerializer(read_only=True)
-    book = serializers.StringRelatedField(read_only=True)
+    book = ReviewBookSerializer(read_only=True)
+    contributor = ContributorSerializer(read_only=True)
 
     class Meta:
         model = Review
-        fields = ['pk', 'content', 'date_created', 'date_edited', 'rating', 'creator', 'book', 'book_id']
+        fields = ['pk', 'content', 'date_created', 'date_edited', 'rating', 'creator', 'book', 'contributor']
 
     def create(self, validated_data):
         request = self.context["request"]
@@ -69,4 +83,4 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ['title', 'publication_date', 'isbn', 'publisher', 'rating', 'reviews']
+        fields = ['title', 'publication_date', 'isbn','cover', 'publisher', 'rating', 'reviews']

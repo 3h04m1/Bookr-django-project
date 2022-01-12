@@ -22,13 +22,11 @@ class Dev(Configuration):
     PROJ_ROOT = '/home/bookr/Bookr-django-project/'
     SECRET_KEY = 'django-insecure--)2beo8kr9maxs#gj#gx=2m446+)4$i0!1lk+zd*@-q@qwxdst'
     DEBUG = values.BooleanValue(True)
-    ALLOWED_HOSTS = ['192.168.0.7', '127.0.0.1', '192.168.0.5']
+    ALLOWED_HOSTS = ['192.168.0.7', '127.0.0.1', '192.168.0.5', 'www.baiters.ml']
     # Application definition
 
     INSTALLED_APPS = [
- #       'debug_toolbar',
         'bookr_admin.app_admin.BookrAdminConfig',
-        # 'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
@@ -36,12 +34,10 @@ class Dev(Configuration):
         'django.contrib.staticfiles',
         'reviews',
         'bookr_admin',
-        'filter_demo',
-        'book_management_app',
         'rest_framework',
         'rest_framework.authtoken',
-        'bookr_test',
         'crispy_forms',
+        'react_test_app',
 
     ]
 
@@ -120,7 +116,7 @@ class Dev(Configuration):
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
     MEDIA_URL = '/media/'
-    MEDIA_ROOT = '/home/bookr/Bookr-django-project/media/'
+    MEDIA_ROOT = '/home/bookr/Bookr-django-project/bookr/media/'
 
     # Default primary key field type
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

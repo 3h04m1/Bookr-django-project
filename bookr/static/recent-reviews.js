@@ -10,14 +10,16 @@ class ReviewDisplay extends React.Component {
       return <div className="col mb-4">
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">{ review.book }
-                        <strong>({ review.rating })</strong>
+		    <div>
+		    <img className="card_img_top" src={ review.book.cover } alt={review.book.title}/>
+                    <h5 className="card-title">{ review.book.title }
                     </h5>
+		    </div>
                     <h6 className="card-subtitle mb-2 text-muted">{ review.creator.email }</h6>
-                    <p className="card-text">{ review.content }</p>
+                    <p className="card-text"><span className="badge badge-primary badge-pill">{ review.rating }</span> { review.content }</p>
                 </div>
                 <div className="card-footer">
-                    <a href={'/book/' + review.book_id + '/' } className="card-link">View Book</a>
+                    <a href={'/book/' + review.book.pk + '/' } className="card-link">View Book</a>
                 </div>
             </div>
         </div>;
@@ -48,7 +50,7 @@ class RecentReviews extends React.Component {
               Accept: 'application/json'
           }
         }).then((response) => {
-          return response.json()
+          return response.json();
         }).then((data) => {
         this.setState({
                 loading: false,
@@ -56,8 +58,9 @@ class RecentReviews extends React.Component {
                 nextUrl: data.next,
                 previousUrl: data.previous
           })
+		console.log(data.results)
         })
-        console.log(data.next)
+         //console.log(data.results)
     }
 
     componentDidMount() {

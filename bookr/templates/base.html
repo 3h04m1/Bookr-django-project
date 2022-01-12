@@ -26,6 +26,9 @@
         .navbar {
             min-height: 100px;
             font-size: 25px;
+			display:flex; !important
+			justify-content:center;!important
+			aligtn-items:center;
         }
 
         .navbar-brand {
@@ -35,6 +38,13 @@
         .navbar-brand > img {
             height: 60px;
         }
+		.login-c {
+		padding-left:1.5rem;
+		}
+		.login-c > p {
+				color:aliceblue;
+		font-size:1.5rem;
+		}
     </style>
 </head>
 <body>
@@ -51,6 +61,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/books/">Home <span class="sr-only">(current)</span></a>
             </li>
+			<li class="nav-item">
+					<a class="nav-link" href="/about/">About <span class="sr-only">(current)</span></a>
+			</li>
             {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link" href="/accounts/logout">Logout</a>
@@ -67,7 +80,33 @@
         </form>
     {% if user.is_authenticated %}
         <br>
-        <h2 style="margin-left: 10px;">User: <a class="btn btn-secondary" href="{% url 'profile' %}">{{ user.username }}</a></h2>
+		 <div class="form-inline my-2 my-lg-0">
+                                <ul class="navbar-nav mr-auto">
+										<li class="nav-item"><a href="#" class="nav-link">
+														<span><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+																</svg></span>{{ user.username }} </li>
+										<li class="nav-item">
+                                <a href="#" class="nav-link">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+  <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg><span>
+                                                                Logout</li>
+								</ul>
+    </div>
+
+		{% else %}
+		<div class="login-c form-inline my-2 my-lg-0">
+				<ul class="navbar-nav mr-auto"><li class="nav-item">
+				<a href="#" class="nav-link">
+				<span><svg style="margin: 0px; padding:0px" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+						</svg><span>
+								Login</li>
+    </div>
     {% endif %}
     </div>
 </nav>
@@ -80,17 +119,25 @@
 </div>
 <div class="container-fluid">
 {% block content %}
-    <h1>Welcome to Bookr!</h1>
+    <div style="margin-top: 1.5em" class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Showcase website for portfolio</h4>
+  <p>This website is made by Max Vojtkov(Maxim Voitcov), as the endpoint of the Django learning course, this is the final version of the vebsite and it's ment to be just for whow case only.</p>
+  <hr>
+  <p class="mb-0">For more informations about the website framework used please visit the <a href="{% url 'about' %}" class="alert-link">About</a> page</p>
+</div>
 {% endblock %}
 </div>
 <!-- Copyright -->
 <footer class="page-footer font-small blue">
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="https://www.packtpub.com"> Packt Publications</a>
-        <p>Website by: Packt Publications</p>
-        <p>Contact information: <a href="mailto:email@example.com">email@example.com</a></p>
+    <div class="footer-copyright text-center py-3">&#9432 This Website is for portfolio only, please visit
+        <a href="https://3h04m1.github.io"> Max Vojtkov's portfolio</a>
+        <p>Website by: Max Vojtkov</p>
+        <p>Contact information: <a href="mailto:maxvojtkov@gmail.com">maxvojtkov@gmail.com</a></p>
     </div>
 </footer>
 <!-- Copyright -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

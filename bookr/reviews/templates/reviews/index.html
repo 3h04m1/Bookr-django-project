@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+ <div style="margin-top: 1.2rem"class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Showcase website for portfolio</h4>
+  <p>This website is made by Max Vojtkov(Maxim Voitcov), as the endpoint of the Django learning course, this is the final version of the vebsite and it's ment to be just for whow case only.</p>
+  <hr>
+  <p class="mb-0">For more informations about the website framework used please visit the <a href="{% url 'about' %}" class="alert-link">About</a> page</p>
+</div>
   {% if viewed_books %}
   Recently viewed books:
   <ul>
@@ -13,11 +19,11 @@
   <div id="recent_reviews"></div>
   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-  <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="{% static 'recent-reviews.js' %}" type="text/babel"></script>
   <script type="text/babel">
     ReactDOM.render(<RecentReviews url="{% url 'api:review-list' %}?limit=6" />,
         document.getElementById('recent_reviews')
     );
   </script>
-{% endblock %}
+  {% endblock %}

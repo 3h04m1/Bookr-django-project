@@ -13,6 +13,10 @@ from .utils import average_rating
 from .forms import SearchForm, OrderForm, PublisherForm, ReviewForm, BookMediaForm
 
 
+def about(request):
+    return render(request, 'reviews/about.html')
+
+
 def index(request):
     return render(request, 'reviews/index.html')
 

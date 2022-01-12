@@ -24,9 +24,9 @@ urlpatterns = [
     path("publishers/new", views.publisher_edit, name="publisher_create"),
     path("publishers/<pk>", views.publisher_edit, name="publisher_edit"),
     path("", views.index, name="index"),
-    path('api/', include((router.urls, 'api'))),
-    path('api/login/', api_views.Login.as_view(), name='login'),
-
+    path(r'api/', include((router.urls, 'api'))),
+    path(r'api/login/', api_views.Login.as_view(), name='login'),
+    path('about/', views.about, name='about'),
 
 ]
 
