@@ -869,7 +869,6 @@ For the api part I used Django REST Api. The api url is /api and current it has 
 	```
 - <em>/api/reviews/</em> wich gives all the information about the reviews in the database
 
-~~~json
 ```json
 [
 {
